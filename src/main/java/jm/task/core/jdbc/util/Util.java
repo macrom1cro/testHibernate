@@ -19,7 +19,7 @@ public class Util {
     private static final String URL = "jdbc:mysql://localhost:3306/mydbtest?autoReconnect=true&useSSL=false";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
-    private static Connection connection;
+    private static Connection connection = null;
     private static Driver driver;
 
     public static Connection getConnection() {
@@ -63,8 +63,10 @@ public class Util {
             StandardServiceRegistryBuilder.destroy(serviceRegistry);
         }
         try {
-            if (!connection.isClosed()) {
-                connection.close();
+            if (!(connection == null)) {
+                if (!connection.isClosed()) {
+                    connection.close();
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
