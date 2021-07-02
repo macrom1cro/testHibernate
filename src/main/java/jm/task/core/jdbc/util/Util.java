@@ -63,10 +63,8 @@ public class Util {
             StandardServiceRegistryBuilder.destroy(serviceRegistry);
         }
         try {
-            if (!(connection == null)) {
-                if (!connection.isClosed()) {
-                    connection.close();
-                }
+            if (!(connection == null) && !connection.isClosed()) {
+                connection.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
